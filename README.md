@@ -57,4 +57,4 @@ Now that you're all set up, starting the containers is simply a matter of runnin
 ## Things that I might add in future
 
 - Documentation for the `reset.sh` script
-- A script to easily import a database backup; useful if, e.g. using this set-up to host a local development version of a website that already has a production erison live on the internet.
+- A script to easily import a database backup; useful if, e.g. using this set-up to host a local development version of a website that already has a production version live on the internet.
