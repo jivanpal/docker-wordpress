@@ -1,0 +1,24 @@
+    ssl_certificate     /etc/letsencrypt/live/${DOMAIN_NAME}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN_NAME}/privkey.pem;
+
+    ssl_session_cache shared:le_nginx_SSL:1m;
+    ssl_session_timeout 1440m; # 24 hours
+
+    ssl_prefer_server_ciphers on;
+
+## SSL protocols, ciphers, and Diffie-Hellman parameters used here follow Mozilla guidelines.
+## See: https://ssl-config.mozilla.org/#server=nginx&config=intermediate
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    ssl_dhparam         conf.d/ssl-dhparams.pem;    # Generate this file using the `setup.sh` or `regenerate-dhparams.sh` script
+
+## Uncomment the following line for HSTS;
+## it is disabled here by default in case you are not
+## employing HSTS on the production version of your website.
+## If you were to enable it here in such situation, then your
+## web browser would expect SSL to be employed on your live website,
+## potentially causing you to have many unnecessary headaches.
+## (Really, though, you should be using SSL... please.)
+
+    # add_header          Strict-Transport-Security "max-age=15768000" always;

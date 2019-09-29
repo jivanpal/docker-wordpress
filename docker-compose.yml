@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+
+  database:
+    container_name: ${CONTAINER_PREFIX}_database
+    image: mariadb:latest
+    env_file: ./.env
+    restart: always
+    volumes:
+      - ./database:/var/lib/mysql
+
+  wordpress:
+    container_name: ${CONTAINER_PREFIX}_wordpress
+    image: wordpress:fpm
+    env_file: ./.env
+    restart: always
+    depends_on:
+      - database
+    volumes:
+      - ./webroot:/var/www/html
+      # Mount WordPress theme
+      # - /absolute/path/to/your/theme:/var/www/html/wp-content/themes/theme-name
+    
+  webserver:
+    container_name: ${CONTAINER_PREFIX}_webserver
+    image: nginx:latest
+    env_file: ./.env
+    restart: always
+    depends_on:
+      - wordpress
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./webroot:/var/www/html
+      - ./nginx-config:/etc/nginx/conf.d
+      - ./nginx-logs:/var/log/nginx
+      - ./letsencrypt:/etc/letsencrypt
+      # Mount WordPress theme
+      # - /absolute/path/to/your/theme:/var/www/html/wp-content/themes/theme-name

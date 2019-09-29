@@ -1,0 +1,40 @@
+access_log /var/log/nginx/access_main.log;
+error_log /var/log/nginx/error_main.log;
+
+root /var/www/html;
+index index.php index.html index.htm;
+
+location ~ /\. {
+    deny all;
+}
+
+location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+}
+
+location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+    expires -1;
+    log_not_found off;
+}
+
+# Increase max. size of client requests to allow uploading of large files to WordPress
+client_max_body_size 24m;
+
+location / {
+    try_files $uri $uri/ /index.php$is_args$args;
+}
+
+location ~ \.php$ {
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    try_files $fastcgi_script_name =404;
+    set $path_info $fastcgi_path_info;
+    fastcgi_param PATH_INFO $path_info;
+
+    fastcgi_index index.php;
+
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+
+    fastcgi_pass wordpress:9000;
+}
