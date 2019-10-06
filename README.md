@@ -50,9 +50,13 @@ Due to the current nature of this set-up's design, it cannot be easily used on W
 
     The script should then process the files in `nginx-config-template`, copy the processed files to `nginx-config`, and then exit cleanly.
 
-5. Run `docker-compose up` to create the Docker containers and start them. the terminal will display console messages from each of the containers. Once MariaDB has initialised the database and WordPress has successfully connected to it, you should see the message `NOTICE: ready to handle connections`, at which point you will be able to access your locally hosted website. For now, though, stop the containers by first pausing the process with `CTRL-Z`; you'll now be at the terminal, so you can resume the containers with `bg`, and then actually be able to stop them with `docker-compose stop`.
+5. Run `docker-compose up` to create the Docker containers and start them. the terminal will display console messages from each of the containers. Once MariaDB has initialised the database and WordPress has successfully connected to it, you should see the message `NOTICE: ready to handle connections`, at which point you will be able to access your locally hosted website. For now, though, stop the containers as follows:
 
-Now that you're all set up, starting the containers is simply a matter of running `docker-compose up -d` from the main directory, and stopping them can be done with `docker-compose stop`.
+   1. Pause the currently running `docker-compose` process with `CTRL-Z`.
+   2. Resume the paused process in the background with `bg`.
+   3. Actually stop the containers with `docker-compose stop`.
+
+Now that you're all set up, starting up the containers in the background is simply a matter of running `docker-compose up -d` from the main directory, and stopping them can be done with `docker-compose stop`.
 
 ## Things that I might add in future
 
