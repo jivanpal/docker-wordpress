@@ -1,4 +1,5 @@
 #!/bin/bash
+
 source .env
 
 docker rm ${CONTAINER_PREFIX}_{database,wordpress,webserver}
