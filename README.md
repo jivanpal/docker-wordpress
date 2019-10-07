@@ -16,7 +16,9 @@ SSL certificates for serving HTTPS requests are solicited from Let's Encrypt wit
 
 ## So... how do I use it?
 
-Due to the current nature of this set-up's design, it cannot be easily used on Windows (yet; unless you have Git-Bash or another UNIX shell-like interface that will allow you to run Bash scripts). I might create some PowerShell or DOS/command-prompt scripts in future, but don't bet on it. It's a given that you'll need Docker installed on your machine, and be able to run `docker` and `docker-compose` from the terminal. Now that that's out of the way, here are the setup steps:
+Due to the current nature of this set-up's design, it cannot be easily used on Windows (yet; unless you have Git-Bash or another UNIX shell-like interface that will allow you to run Bash scripts). I might create some PowerShell or DOS/command-prompt scripts in future, but don't bet on it.
+
+You'll need [Docker](https://docs.docker.com/v17.12/docker-for-mac/install/) and [Docker Compose](https://docs.docker.com/compose/install/) installed on your machine, and thus be able to run `docker` and `docker-compose` from the terminal. Now that that's out of the way, here are the setup steps:
 
 1. Clone this Git repository.
 
