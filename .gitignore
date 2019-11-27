@@ -1,0 +1,5 @@
+/database/
+/letsencrypt/
+/nginx-config/
+/nginx-logs/
+/webroot/
